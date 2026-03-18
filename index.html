@@ -29,60 +29,59 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes glow {
-            0% { box-shadow: 0 0 5px var(--accent-gold); }
-            50% { box-shadow: 0 0 20px var(--accent-gold); }
-            100% { box-shadow: 0 0 5px var(--accent-gold); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* --- Layout --- */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            z-index: 10;
+            animation: fadeIn 1.2s ease-out;
+        }
+
         header {
-            height: 60vh;
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: url('hero-bg.jpg') center/cover; /* Replace with your hero image */
-            position: relative;
+            padding: 60px 20px;
         }
 
-        header::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 1;
-        }
-
-        .header-content {
-            z-index: 2;
-            animation: fadeInUp 1s ease-out;
-        }
+        .header-content { z-index: 2; animation: fadeInUp 1s ease-out; }
 
         h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            font-size: clamp(2rem, 6vw, 4rem);
             color: var(--accent-gold);
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 15px rgba(0,0,0,0.7);
+            margin-bottom: 10px;
         }
 
-        /* --- Menu Grid --- */
-        .container {
-            max-width: 1200px;
-            margin: -50px auto 50px;
-            padding: 20px;
-            z-index: 3;
-            position: relative;
+        .hero-food-img {
+            width: 100%;
+            max-width: 500px;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+            animation: fadeIn 1.5s ease-in-out;
         }
+
+        /* --- Menu Grid & Image Boxes --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
 
         .section-title {
             text-align: center;
-            margin: 40px 0;
+            margin: 60px 0 30px;
             font-size: 2rem;
-            border-bottom: 2px solid var(--accent-gold);
-            display: inline-block;
-            width: 100%;
+            font-family: 'Playfair Display', serif;
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 10px;
         }
 
         .menu-grid {
@@ -93,188 +92,222 @@
 
         .menu-item {
             background: var(--glass);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 15px;
             padding: 20px;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
             cursor: pointer;
             animation: fadeInUp 0.8s ease backwards;
         }
 
-        .menu-item:hover {
-            transform: scale(1.05);
-            border-color: var(--accent-gold);
-        }
+        .menu-item:hover { transform: translateY(-5px); border-color: var(--accent-gold); }
 
-        .menu-item img {
+        .item-img-box {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: 180px;
+            background: rgba(0,0,0,0.3);
             border-radius: 10px;
             margin-bottom: 15px;
+            overflow: hidden;
         }
 
-        .price { color: var(--accent-gold); font-weight: bold; }
+        .item-img-box img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* --- Floating Order Button --- */
-        .cart-btn {
+        .price-tag {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 12px;
+            background: var(--primary-red);
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* --- Reviews --- */
+        .reviews { margin-top: 80px; text-align: center; }
+        .review-card {
+            font-style: italic;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 10px auto;
+            max-width: 600px;
+        }
+
+        /* --- Social & Credits --- */
+        .social-float {
             position: fixed;
             bottom: 30px;
-            right: 30px;
-            background: var(--accent-gold);
-            color: #000;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            animation: glow 2s infinite;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
             z-index: 100;
         }
 
-        /* --- Modal --- */
+        .social-float.visible { opacity: 1; }
+
+        .social-icon {
+            width: 45px; height: 45px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: #000; text-decoration: none; font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px 100px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* --- Modal (unchanged) --- */
         .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.8);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+            display: none; justify-content: center; align-items: center; z-index: 1000;
         }
-
-        .modal.active { display: flex; opacity: 1; }
-
+        .modal.active { display: flex; }
         .modal-content {
-            background: var(--white);
-            color: #333;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            transform: scale(0.8);
-            transition: transform 0.3s ease;
-        }
-
-        .modal.active .modal-content { transform: scale(1); }
-
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: 600; }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-
-        .submit-btn {
-            background: #25D366; /* WhatsApp Green */
-            color: white;
-            border: none;
-            padding: 15px;
-            width: 100%;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
+            background: #fff; color: #333; padding: 30px;
+            border-radius: 20px; width: 90%; max-width: 450px;
         }
     </style>
 </head>
 <body>
 
+    <img src="logo.png" alt="Logo" class="logo">
+
     <header>
         <div class="header-content">
             <h1>Southern Style Smokehouse</h1>
-            <p>Authentic Soul Food & BBQ</p>
+            <p>Authentic BBQ & Soul Food</p>
+            <img src="food.png" alt="Hero Food" class="hero-food-img">
         </div>
     </header>
 
     <div class="container">
-        <h2 class="section-title">Main Entrées</h2>
+        <h2 class="section-title">Entrées</h2>
         <div class="menu-grid">
-            <div class="menu-item" style="animation-delay: 0.1s" onclick="openModal('Fried Chicken With Three Sides')">
-                <img src="fried-chicken.jpg" alt="Fried Chicken">
+            <div class="menu-item" onclick="openModal('Fried Chicken With Three Sides')">
+                <div class="item-img-box"><img src="fried_chicken.png" alt="Fried Chicken"></div>
                 <h3>Fried Chicken</h3>
-                <p>Crispy golden Southern-style fried chicken.</p>
-                <span class="price">Tap to order</span>
+                <p>Crispy golden Southern-style chicken with 3 sides.</p>
+                <div class="price-tag">Order via WhatsApp</div>
             </div>
-            <div class="menu-item" style="animation-delay: 0.2s" onclick="openModal('BBQ Smoked Ribs')">
-                <img src="ribs.jpg" alt="Ribs">
+            <div class="menu-item" onclick="openModal('BBQ Smoked Ribs')">
+                <div class="item-img-box"><img src="ribs_menu.png" alt="Ribs"></div>
                 <h3>BBQ Smoked Ribs</h3>
                 <p>Fall-off-the-bone ribs smoked low and slow.</p>
-                <span class="price">Tap to order</span>
+                <div class="price-tag">Order via WhatsApp</div>
             </div>
+            <div class="menu-item" onclick="openModal('Smothered Salmon with Rice')">
+                <div class="item-img-box"><img src="salmon.png" alt="Salmon"></div>
+                <h3>Smothered Salmon</h3>
+                <p>Fresh salmon in a creamy house-made rice sauce.</p>
+                <div class="price-tag">Order via WhatsApp</div>
             </div>
+            <div class="menu-item" onclick="openModal('Delux Big Burger')">
+                <div class="item-img-box"><img src="burger.png" alt="Burger"></div>
+                <h3>Delux Big Burger</h3>
+                <p>Fully loaded stacked burger for serious lovers.</p>
+                <div class="price-tag">Order via WhatsApp</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">All Sides</h2>
+        <div class="menu-grid">
+            <div class="menu-item" onclick="openModal('Baked Mac & Cheese')">
+                <div class="item-img-box"><img src="mac.png" alt="Mac"></div>
+                <h3>Baked Mac & Cheese</h3>
+                <div class="price-tag">Add to Order</div>
+            </div>
+            <div class="menu-item" onclick="openModal('Candied Yams')">
+                <div class="item-img-box"><img src="yams.png" alt="Yams"></div>
+                <h3>Candied Yams</h3>
+                <div class="price-tag">Add to Order</div>
+            </div>
+            <div class="menu-item" onclick="openModal('Corn Bread')">
+                <div class="item-img-box"><img src="cornbread.png" alt="Cornbread"></div>
+                <h3>Corn Bread</h3>
+                <div class="price-tag">Add to Order</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Desserts</h2>
+        <div class="menu-grid">
+            <div class="menu-item" onclick="openModal('Peach Cobbler')">
+                <div class="item-img-box"><img src="cobbler.png" alt="Cobbler"></div>
+                <h3>Peach Cobbler</h3>
+                <div class="price-tag">Order Now</div>
+            </div>
+            <div class="menu-item" onclick="openModal('Banana Pudding')">
+                <div class="item-img-box"><img src="pudding.png" alt="Pudding"></div>
+                <h3>Banana Pudding</h3>
+                <div class="price-tag">Order Now</div>
+            </div>
+        </div>
+
+        <div class="reviews">
+            <h2 class="section-title">What People Say</h2>
+            <div class="review-card">"Best ribs in town! The smothered pork steak melted in my mouth." - Marcus T.</div>
+            <div class="review-card">"The Mac & Cheese is exactly like my grandma's. 5 stars!" - Sarah L.</div>
+        </div>
     </div>
 
-    <a href="#" class="cart-btn" onclick="toggleModal(event)">Order via WhatsApp</a>
+    <div id="socials" class="social-float">
+        <a href="https://facebook.com/SouthernSideSmokehouse" class="social-icon">f</a>
+        <a href="https://instagram.com/SouthernSideSmokehouse_Chef" class="social-icon">ig</a>
+        <a href="https://tiktok.com/@SouthernSideSmokehouse" class="social-icon">tk</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Southern Style Smokehouse. All Rights Reserved.</p>
+        <p>Pickup Only • Catering & Events Available</p>
+    </footer>
 
     <div id="orderModal" class="modal">
         <div class="modal-content">
-            <h2 style="margin-bottom: 20px;">Place Your Order</h2>
+            <h2 style="margin-bottom: 20px;">Order Details</h2>
             <form id="orderForm">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="userName" required placeholder="John Doe">
-                </div>
-                <div class="form-group">
-                    <label>Select Entrée</label>
-                    <select id="itemSelect">
-                        <option>Fried Chicken With Three Sides</option>
-                        <option>Fried Fish With Three Sides</option>
-                        <option>Smothered Pork Steaks</option>
-                        <option>BBQ Smoked Ribs</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Sides (Choose 3)</label>
-                    <textarea id="sides" placeholder="e.g. Mac & Cheese, Yams, Cornbread"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Order to WhatsApp</button>
-                <button type="button" onclick="toggleModal(event)" style="background:none; border:none; color: #888; margin-top:10px; width:100%; cursor:pointer;">Cancel</button>
+                <input type="text" id="userName" required placeholder="Your Name" style="margin-bottom:15px; width:100%; padding:10px;">
+                <input type="text" id="itemSelect" readonly style="margin-bottom:15px; width:100%; padding:10px; background:#eee;">
+                <textarea id="sides" placeholder="Special instructions..." style="width:100%; padding:10px; margin-bottom:15px;"></textarea>
+                <button type="submit" style="background:#25D366; color:white; border:none; padding:15px; width:100%; border-radius:10px; cursor:pointer;">Send WhatsApp Order</button>
+                <button type="button" onclick="toggleModal()" style="background:none; border:none; color:#999; margin-top:10px; cursor:pointer; width:100%;">Cancel</button>
             </form>
         </div>
     </div>
 
     <script>
         const modal = document.getElementById('orderModal');
-        const orderForm = document.getElementById('orderForm');
-        const bizPhone = "7194575041"; // Your business number
+        const socials = document.getElementById('socials');
+        const bizPhone = "7194575041";
 
-        function toggleModal(e) {
-            if(e) e.preventDefault();
-            modal.classList.toggle('active');
+        function toggleModal() { modal.classList.toggle('active'); }
+        
+        function openModal(name) {
+            document.getElementById('itemSelect').value = name;
+            toggleModal();
         }
 
-        function openModal(itemName) {
-            document.getElementById('itemSelect').value = itemName;
-            modal.classList.add('active');
-        }
-
-        orderForm.addEventListener('submit', (e) => {
+        document.getElementById('orderForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            
-            const name = document.getElementById('userName').value;
-            const item = document.getElementById('itemSelect').value;
-            const sides = document.getElementById('sides').value;
-
-            const message = `Hello Southern Style Smokehouse!%0A%0A` +
-                            `*Order for:* ${name}%0A` +
-                            `*Entrée:* ${item}%0A` +
-                            `*Sides:* ${sides}`;
-
-            const whatsappUrl = `https://wa.me/${bizPhone}?text=${message}`;
-            window.open(whatsappUrl, '_blank');
+            const msg = `Order: ${document.getElementById('itemSelect').value}%0AName: ${document.getElementById('userName').value}%0AInstructions: ${document.getElementById('sides').value}`;
+            window.open(`https://wa.me/${bizPhone}?text=${msg}`, '_blank');
             toggleModal();
         });
 
-        // Close modal when clicking outside
-        window.onclick = (event) => {
-            if (event.target == modal) toggleModal();
-        }
+        // Reveal socials on scroll
+        window.addEventListener('scroll', () => {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                socials.classList.add('visible');
+            } else {
+                socials.classList.remove('visible');
+            }
+        });
     </script>
 </body>
-  </html>
+</html>
