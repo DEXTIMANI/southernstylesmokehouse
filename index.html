@@ -1,1 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southern Style Smokehouse | Order Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #8B0000;
+            --accent-gold: #FFD700;
+            --dark-bg: #1a0202;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.1);
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg), #4a0000);
+            color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px var(--accent-gold); }
+            50% { box-shadow: 0 0 20px var(--accent-gold); }
+            100% { box-shadow: 0 0 5px var(--accent-gold); }
+        }
+
+        /* --- Layout --- */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('hero-bg.jpg') center/cover; /* Replace with your hero image */
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        }
+
+        .header-content {
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--accent-gold);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        /* --- Menu Grid --- */
+        .container {
+            max-width: 1200px;
+            margin: -50px auto 50px;
+            padding: 20px;
+            z-index: 3;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 2rem;
+            border-bottom: 2px solid var(--accent-gold);
+            display: inline-block;
+            width: 100%;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-item {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            animation: fadeInUp 0.8s ease backwards;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-gold);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .price { color: var(--accent-gold); font-weight: bold; }
+
+        /* --- Floating Order Button --- */
+        .cart-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent-gold);
+            color: #000;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            animation: glow 2s infinite;
+            z-index: 100;
+        }
+
+        /* --- Modal --- */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active { display: flex; opacity: 1; }
+
+        .modal-content {
+            background: var(--white);
+            color: #333;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content { transform: scale(1); }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: 600; }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .submit-btn {
+            background: #25D366; /* WhatsApp Green */
+            color: white;
+            border: none;
+            padding: 15px;
+            width: 100%;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <h1>Southern Style Smokehouse</h1>
+            <p>Authentic Soul Food & BBQ</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Main Entrées</h2>
+        <div class="menu-grid">
+            <div class="menu-item" style="animation-delay: 0.1s" onclick="openModal('Fried Chicken With Three Sides')">
+                <img src="fried-chicken.jpg" alt="Fried Chicken">
+                <h3>Fried Chicken</h3>
+                <p>Crispy golden Southern-style fried chicken.</p>
+                <span class="price">Tap to order</span>
+            </div>
+            <div class="menu-item" style="animation-delay: 0.2s" onclick="openModal('BBQ Smoked Ribs')">
+                <img src="ribs.jpg" alt="Ribs">
+                <h3>BBQ Smoked Ribs</h3>
+                <p>Fall-off-the-bone ribs smoked low and slow.</p>
+                <span class="price">Tap to order</span>
+            </div>
+            </div>
+    </div>
+
+    <a href="#" class="cart-btn" onclick="toggleModal(event)">Order via WhatsApp</a>
+
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-bottom: 20px;">Place Your Order</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="userName" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Select Entrée</label>
+                    <select id="itemSelect">
+                        <option>Fried Chicken With Three Sides</option>
+                        <option>Fried Fish With Three Sides</option>
+                        <option>Smothered Pork Steaks</option>
+                        <option>BBQ Smoked Ribs</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sides (Choose 3)</label>
+                    <textarea id="sides" placeholder="e.g. Mac & Cheese, Yams, Cornbread"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Order to WhatsApp</button>
+                <button type="button" onclick="toggleModal(event)" style="background:none; border:none; color: #888; margin-top:10px; width:100%; cursor:pointer;">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('orderModal');
+        const orderForm = document.getElementById('orderForm');
+        const bizPhone = "7194575041"; // Your business number
+
+        function toggleModal(e) {
+            if(e) e.preventDefault();
+            modal.classList.toggle('active');
+        }
+
+        function openModal(itemName) {
+            document.getElementById('itemSelect').value = itemName;
+            modal.classList.add('active');
+        }
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('userName').value;
+            const item = document.getElementById('itemSelect').value;
+            const sides = document.getElementById('sides').value;
+
+            const message = `Hello Southern Style Smokehouse!%0A%0A` +
+                            `*Order for:* ${name}%0A` +
+                            `*Entrée:* ${item}%0A` +
+                            `*Sides:* ${sides}`;
+
+            const whatsappUrl = `https://wa.me/${bizPhone}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+            toggleModal();
+        });
+
+        // Close modal when clicking outside
+        window.onclick = (event) => {
+            if (event.target == modal) toggleModal();
+        }
+    </script>
+</body>
+  </html>
