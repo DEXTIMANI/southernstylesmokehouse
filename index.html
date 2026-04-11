@@ -135,27 +135,27 @@
 
         <h2 class="section-title">Desserts</h2>
         <div class="menu-grid">
-            <div class="menu-item" onclick="openModal('Peach Cobbler')">
+            <div class="menu-item" onclick="openModal('Peach Cobbler', 'no sides')">
                 <div class="item-img-box"><img src="peach cobbler.png" alt="Peach Cobbler"></div>
                 <h3>Peach Cobbler</h3>
                 <div class="price-tag">Order Now</div>
             </div>
-            <div class="menu-item" onclick="openModal('Deluxe Big Burger')">
+            <div class="menu-item" onclick="openModal('Deluxe Big Burger', 'no sides')">
                 <div class="item-img-box"><img src="big burger.png" alt="Big Burger"></div>
                 <h3>Deluxe Big Burger</h3>
                 <div class="price-tag">Order Now</div>
             </div>
-            <div class="menu-item" onclick="openModal('Cheese Burger')">
+            <div class="menu-item" onclick="openModal('Cheese Burger', 'no sides')">
                 <div class="item-img-box"><img src="cheese burger.png" alt="Cheese Burger"></div>
                 <h3>Cheese Burger</h3>
                 <div class="price-tag">Order Now</div>
             </div>
-            <div class="menu-item" onclick="openModal('Banana Pudding')">
+            <div class="menu-item" onclick="openModal('Banana Pudding', 'no sides')">
                 <div class="item-img-box"><img src="banana pudding.png" alt="Banana Pudding"></div>
                 <h3>Banana Pudding</h3>
                 <div class="price-tag">Order Now</div>
             </div>
-            <div class="menu-item" onclick="openModal('Chess Pie')">
+            <div class="menu-item" onclick="openModal('Chess Pie', 'no sides')">
                 <div class="item-img-box"><img src="chess pie.png" alt="Chess Pie"></div>
                 <h3>Chess Pie</h3>
                 <div class="price-tag">Order Now</div>
@@ -167,13 +167,13 @@
         <div class="menu-grid">
             
             
-            <div class="menu-item" onclick="openModal('Sloppy Dog')">
+            <div class="menu-item" onclick="openModal('Sloppy Dog', 'no sides')">
                 <div class="item-img-box"><img src="hotdog.png" alt="Sloppy Dog"></div>
                 <h3>Sloppy Dog</h3>
                 <h4 style="color:yellow; font-weight: bold;">Jalapeno Pepper | Green Pepper | Onions | Chili Pepper</h4>
                 <div class="price-tag">Order Now</div>
             </div>
-            <div class="menu-item" onclick="openModal('Atomic Dog')">
+            <div class="menu-item" onclick="openModal('Atomic Dog', 'no sides')">
                 <div class="item-img-box"><img src="hotdog.png" alt="Atomic Dog"></div>
                 <h3>Atomic Dog</h3>
                 <h4 style="color:yellow; font-weight: bold;">Bacon | Cheese | Onions | Eggs</h4>
@@ -187,7 +187,7 @@
         
          <h2 class="section-title">Wings Collection</h2>
         <div class="menu-grid">
-            <div class="menu-item" onclick="openModal('Wings Collection')">
+            <div class="menu-item" onclick="openModal('Wings Collection', 'no sides')">
                 <div class="item-img-box"><img src="wings.png" alt="Wings"></div>
                 <h3>Wings Collection</h3>
                 <h4 style="color:yellow; font-weight: bold;">LDD - Honey Garlic Wings | Zak Wings - Garlic Parmeson | Sapphire Wings - Spicy BbQ Wings | MMMB -BBQ Wings</h4>
@@ -234,6 +234,7 @@
                     <label style="font-weight:600; font-size:0.8rem;">Item Selected:</label>
                     <input type="text" id="itemSelect" readonly style="background:#eee">
 
+                 <div id="sidesSection">
                     <label style="font-weight:600; font-size:0.8rem;">Select Your Sides:</label>
                     <div class="sides-grid">
                         <label><input type="checkbox" name="side" value="Baked Mac & Cheese"> Mac & Cheese</label>
@@ -248,6 +249,7 @@
                         <label><input type="checkbox" name="side" value="Corn Bread"> Corn Bread</label>
                         <label><input type="checkbox" name="side" value="Smoked Turkey"> Smoked Turkey</label>
                     </div>
+                 </div>
 
                     <textarea id="cNotes" placeholder="Special Instructions..."></textarea>
 
@@ -278,11 +280,23 @@
         const bizPhone = "17194375041";
         let orderData = {};
 
-        function openModal(name) {
-            document.getElementById('itemSelect').value = name;
-            modal.classList.add('active');
-            backToForm();
-        }
+        function openModal(name, type = 'with-sides') {
+    document.getElementById('itemSelect').value = name;
+
+    const sidesSection = document.getElementById('sidesSection');
+
+    if (type === 'no-sides') {
+        sidesSection.style.display = "none";
+
+        // Clear any previously selected sides
+        document.querySelectorAll('input[name="side"]').forEach(c => c.checked = false);
+    } else {
+        sidesSection.style.display = "block";
+    }
+
+    modal.classList.add('active');
+    backToForm();
+}
 
         function closeModal() { modal.classList.remove('active'); document.getElementById('orderForm').reset(); }
         function backToForm() { document.getElementById('formArea').style.display="block"; document.getElementById('receiptArea').style.display="none"; }
