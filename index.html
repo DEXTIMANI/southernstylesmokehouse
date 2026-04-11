@@ -133,8 +133,13 @@
             </div>
         </div>
 
-        <h2 class="section-title">Burgers & Dogs</h2>
+        <h2 class="section-title">Desserts</h2>
         <div class="menu-grid">
+            <div class="menu-item" onclick="openModal('Peach Cobbler')">
+                <div class="item-img-box"><img src="peach cobbler.png" alt="Peach Cobbler"></div>
+                <h3>Peach Cobbler</h3>
+                <div class="price-tag">Order Now</div>
+            </div>
             <div class="menu-item" onclick="openModal('Deluxe Big Burger')">
                 <div class="item-img-box"><img src="big burger.png" alt="Big Burger"></div>
                 <h3>Deluxe Big Burger</h3>
@@ -145,9 +150,27 @@
                 <h3>Cheese Burger</h3>
                 <div class="price-tag">Order Now</div>
             </div>
+            <div class="menu-item" onclick="openModal('Banana Pudding')">
+                <div class="item-img-box"><img src="banana pudding.png" alt="Banana Pudding"></div>
+                <h3>Banana Pudding</h3>
+                <div class="price-tag">Order Now</div>
+            </div>
+            <div class="menu-item" onclick="openModal('Cheese Pie')">
+                <div class="item-img-box"><img src="cheese pie.png" alt="Cheese Pie"></div>
+                <h3>Cheese Pie</h3>
+                <div class="price-tag">Order Now</div>
+            </div>
+        </div>
+        /* --- DOGS SECTION --- */
+        
+         <h2 class="section-title">Dogs</h2>
+        <div class="menu-grid">
+            
+            
             <div class="menu-item" onclick="openModal('Sloppy Dog')">
                 <div class="item-img-box"><img src="hotdog.png" alt="Sloppy Dog"></div>
                 <h3>Sloppy Dog</h3>
+                <h4 style="color:yellow; font-weight: bold;">Jalapeno Pepper | Green Pepper | Onions | Chili Pepper</h4>
                 <div class="price-tag">Order Now</div>
             </div>
             <div class="menu-item" onclick="openModal('Atomic Dog')">
@@ -162,21 +185,36 @@
             </div>
         </div>
 
-        <h2 class="section-title">Desserts</h2>
+        <div class="reviews">
+            <h2 class="section-title">What People Say</h2>
+            <div class="review-card">"Best ribs in town! The smothered pork steak melted in my mouth." - Marcus T.</div>
+            <div class="review-card">"The Mac & Cheese is exactly like my grandma's. 5 stars!" - Sarah L.</div>
+        </div>
+    </div>
+
+     /* --- WINGS SECTION --- */
+        
+         <h2 class="section-title">Dogs</h2>
         <div class="menu-grid">
-            <div class="menu-item" onclick="openModal('Peach Cobbler')">
-                <div class="item-img-box"><img src="peach cobbler.png" alt="Peach Cobbler"></div>
-                <h3>Peach Cobbler</h3>
+            <div class="menu-item" onclick="openModal('Deluxe Big Burger')">
+                <div class="item-img-box"><img src="big burger.png" alt="Big Burger"></div>
+                <h3>Deluxe Big Burger</h3>
                 <div class="price-tag">Order Now</div>
             </div>
-            <div class="menu-item" onclick="openModal('Banana Pudding')">
-                <div class="item-img-box"><img src="banana pudding.png" alt="Banana Pudding"></div>
-                <h3>Banana Pudding</h3>
+            
+            <div class="menu-item" onclick="openModal('Sloppy Dog')">
+                <div class="item-img-box"><img src="hotdog.png" alt="Sloppy Dog"></div>
+                <h3>Sloppy Dog</h3>
                 <div class="price-tag">Order Now</div>
             </div>
-            <div class="menu-item" onclick="openModal('Cheese Pie')">
-                <div class="item-img-box"><img src="cheese pie.png" alt="Cheese Pie"></div>
-                <h3>Cheese Pie</h3>
+            <div class="menu-item" onclick="openModal('Atomic Dog')">
+                <div class="item-img-box"><img src="hotdog.png" alt="Atomic Dog"></div>
+                <h3>Atomic Dog</h3>
+                <div class="price-tag">Order Now</div>
+            </div>
+            <div class="menu-item" onclick="openModal('Wings Collection')">
+                <div class="item-img-box"><img src="wings.png" alt="Wings"></div>
+                <h3>Wings Collection</h3>
                 <div class="price-tag">Order Now</div>
             </div>
         </div>
@@ -205,12 +243,12 @@
                 <form id="orderForm">
                     <input type="text" id="cName" required placeholder="Full Name">
                     <input type="tel" id="cPhone" required placeholder="Phone Number">
-                    <input type="text" id="cAddr" required placeholder="Address (or type 'Pickup')">
+                    <input type="text" id="cAddr" placeholder="Address (or type 'Pickup')">
                     
                     <div style="display: flex; gap: 10px; margin-bottom: 10px;">
                         <select id="cType" required style="flex: 2; margin-bottom: 0;">
                             <option value="Pickup">Pickup</option>
-                            <option value="Deliver">Deliver</option>
+                            <option value="Deliver">Delivery</option>
                         </select>
                         <input type="number" id="cQty" value="1" min="1" required style="flex: 1; margin-bottom: 0;" title="Number of Items">
                     </div>
