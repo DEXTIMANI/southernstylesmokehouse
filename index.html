@@ -248,7 +248,7 @@
                         <label><input type="checkbox" name="side" value="Baked Beans"> Baked Beans</label>
                         <label><input type="checkbox" name="side" value="Mashed Potatoes"> Mashed Potatoes</label>
                         <label><input type="checkbox" name="side" value="Potato Salad"> Potato Salad</label>
-                        <label><input type="checkbox" name="wing" value="Candied Yams"> Candied Yams</label>
+                        <label><input type="checkbox" name="side" value="Candied Yams"> Candied Yams</label>
                         <label><input type="checkbox" name="side" value="Cabbage"> Cabbage</label>
                         <label><input type="checkbox" name="side" value="Collard Greens w/ Turkey"> Collard Greens</label>
                         <label><input type="checkbox" name="side" value="Green Beans & Potatoes"> Green Beans</label>
@@ -340,6 +340,8 @@
 
             const sides = [];
             document.querySelectorAll('input[name="side"]:checked').forEach(c => sides.push(c.value));
+            const wings = [];
+document.querySelectorAll('input[name="wing"]:checked').forEach(c => wings.push(c.value));
 
             const now = new Date();
             const dateTime = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
@@ -349,6 +351,7 @@
                 type: document.getElementById('cType').value,
                 item: document.getElementById('itemSelect').value,
                 sides: sides.join(", ") || "None",
+                wings: wings.join(", ") || "None",
                 notes: document.getElementById('cNotes').value || "None"
             };
 
@@ -360,7 +363,7 @@
                 <hr style="margin:8px 0">
                 <div class="receipt-line"><strong>Qty:</strong> <span>${orderData.qty}x</span></div>
                 <div class="receipt-line"><strong>Main:</strong> <span>${orderData.item}</span></div>
-                <div style="font-size:0.75rem; margin-top:5px;"><strong>Sides:</strong> ${orderData.sides}</div>
+                <div style="font-size:0.75rem; margin-top:5px;">${orderData.item === 'Wings Collection'  ? `<div style="font-size:0.75rem; margin-top:5px;"><strong>Wings:</strong> ${orderData.wings}</div>`  : `<div style="font-size:0.75rem; margin-top:5px;">${orderData.item === 'Wings Collection'  ? `<div style="font-size:0.75rem; margin-top:5px;"><strong>Wings:</strong> ${orderData.wings}</div>`  : `<div style="font-size:0.75rem; margin-top:5px;"><strong>Sides:</strong> ${orderData.sides}</div>` }</div>` }</div>
                 <div style="font-size:0.75rem; margin-top:5px; border-top: 1px solid #eee; padding-top: 5px;"><strong>Address:</strong> ${orderData.addr}</div>
             `;
             document.getElementById('formArea').style.display="none";
