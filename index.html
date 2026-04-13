@@ -379,7 +379,7 @@ document.querySelectorAll('input[name="wing"]:checked').forEach(c => wings.push(
                         `*Method:* ${orderData.type}%0A` +
                         `*Address:* ${orderData.addr}%0A` +
                         `*Order:* ${orderData.qty}x ${orderData.item}%0A` +
-                        `*Sides:* ${orderData.sides}%0A` +
+                        `${orderData.item === 'Wings Collection'  ? `*Wings:* ${orderData.wings}%0A`  : `*Sides:* ${orderData.sides}%0A` }%0A` +
                         `*Notes:* ${orderData.notes}%0A` +
                         `--------------------------%0A` +
                         `*PAYMENT ON DELIVERY*`;
