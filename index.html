@@ -230,6 +230,49 @@
 
     <footer>
         <p>&copy; 2026 Southern Style Smokehouse. All Rights Reserved.</p>
+        <!-- About Button -->
+<button onclick="toggleAbout()" style="
+    background:#ff9800;
+    border:none;
+    padding:10px 20px;
+    font-weight:bold;
+    border-radius:6px;
+    cursor:pointer;">
+    About
+</button>
+
+<!-- About Content -->
+<div id="aboutBox" style="
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    background:#222;
+    color:#fff;
+    border-radius:8px;
+    max-width:350px;">
+    
+    <h3>Southern Style Smokehouse</h3>
+    <p>© 2026</p>
+
+    <strong>Developer Contact</strong>
+    <p>
+        <a href="https://www.dextimani.online" target="_blank" style="color:#ff9800;">
+            www.dextimani.online
+        </a>
+    </p>
+    <p>
+        <a href="mailto:dextimanidigitalservices@gmail.com" style="color:#ff9800;">
+            dextimanidigitalservices@gmail.com
+        </a>
+    </p>
+</div>
+
+<script>
+function toggleAbout() {
+    var box = document.getElementById("aboutBox");
+    box.style.display = (box.style.display === "block") ? "none" : "block";
+}
+</script>
     </footer>
 
     <div id="orderModal" class="modal">
