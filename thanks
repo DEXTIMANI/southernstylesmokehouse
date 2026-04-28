@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You - Southern Style Smokehouse</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }body {
+    background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.thank-you-container {
+    background: #111;
+    width: 100%;
+    max-width: 650px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 2px solid #d97706;
+}
+
+.checkmark {
+    width: 90px;
+    height: 90px;
+    background: #16a34a;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #f59e0b;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.order-box {
+    background: #1f1f1f;
+    padding: 20px;
+    border-radius: 15px;
+    margin: 25px 0;
+}
+
+.order-box h3 {
+    color: #f59e0b;
+    margin-bottom: 10px;
+}
+
+.btn-group {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 14px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+.primary-btn {
+    background: #f59e0b;
+    color: black;
+}
+
+.primary-btn:hover {
+    background: #d97706;
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid #f59e0b;
+    color: #f59e0b;
+}
+
+.secondary-btn:hover {
+    background: #f59e0b;
+    color: black;
+}
+
+.footer-note {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+</style>
+</head>
+<body><div class="thank-you-container">
+    <div class="checkmark">✓</div><h1>Thank You For Your Order!</h1>
+
+<p>
+    Your order has been successfully received by <strong>Southern Style Smokehouse</strong>.
+    We’re preparing your delicious meal with authentic Southern flavor.
+</p>
+
+<div class="order-box">
+    <h3>Order Status</h3>
+    <p>Your payment was successful.</p>
+    <p>Pickup/Delivery details will be processed shortly.</p>
+    <p><strong>Estimated preparation time:</strong> 20–45 minutes</p>
+</div>
+
+<p>
+    If you selected manual payment verification, please send your receipt via WhatsApp for faster confirmation.
+</p>
+
+<div class="btn-group">
+    <a href="/menu.html" class="btn primary-btn">Order Again</a>
+    <a href="https://wa.me/YOURNUMBER" class="btn secondary-btn">Contact Support</a>
+</div>
+
+<div class="footer-note">
+    Need help? Contact Southern Style Smokehouse anytime.
+</div>
+
+</div></body>
+</html>
