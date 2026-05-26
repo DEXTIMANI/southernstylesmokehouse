@@ -81,6 +81,104 @@ Southern Style Smokehouse
     <title>Southern Style Smokehouse | Order Online</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* ===== EVENT BOOKING BUTTON ===== */
+#eventBtn{
+    background: #8B0000;
+    color: #FFD700;
+    border: 2px solid #FFD700;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(255,215,0,0.3);
+}
+
+#eventBtn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255,215,0,0.7);
+}
+
+#eventBtn:active{
+    animation: goldGlow 0.6s ease;
+}
+
+@keyframes goldGlow{
+    0%{
+        box-shadow: 0 0 5px rgba(255,215,0,0.3);
+    }
+    50%{
+        box-shadow:
+            0 0 15px rgba(255,215,0,0.9),
+            0 0 35px rgba(255,215,0,0.7),
+            0 0 60px rgba(255,215,0,0.5);
+    }
+    100%{
+        box-shadow: 0 0 5px rgba(255,215,0,0.3);
+    }
+}
+
+/* ===== EVENT MODAL ===== */
+#eventModal{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+#eventModal.active{
+    display: flex;
+}
+
+.event-modal-content{
+    background: #fff;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 20px;
+    padding: 25px;
+    color: #222;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: fadeInUp 0.4s ease;
+}
+
+.event-modal-content h2{
+    color: #8B0000;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.event-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.event-submit{
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.event-cancel{
+    background: transparent;
+    border: none;
+    width: 100%;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #999;
+}
         :root {
             --primary-red: #8B0000;
             --accent-gold: #FFD700;
@@ -415,6 +513,10 @@ Southern Style Smokehouse
 ">
   ⭐ Leave a Review
     </a>
+    <!-- Event Booking Button -->
+<button id="eventBtn" onclick="openEventModal()">
+    Book Us For Events
+</button>
 
     <div id="socials" class="social-float">
         <a href="https://www.facebook.com/share/1DuF5ZYs8A/" class="social-icon">f</a>
@@ -645,5 +747,122 @@ document.querySelectorAll('input[name="wing"]:checked').forEach(c => wings.push(
             }
         });
     </script>
+    <script>
+function openEventModal(){
+    document.getElementById('eventModal').classList.add('active');
+}
+
+function closeEventModal(){
+    document.getElementById('eventModal').classList.remove('active');
+}
+
+function submitEventBooking(){
+
+    const name = document.getElementById('evName').value;
+    const phone = document.getElementById('evPhone').value;
+    const email = document.getElementById('evEmail').value;
+    const date = document.getElementById('evDate').value;
+    const time = document.getElementById('evTime').value;
+    const venue = document.getElementById('evVenue').value;
+    const type = document.getElementById('evType').value;
+    const guests = document.getElementById('evGuests').value;
+    const service = document.getElementById('evService').value;
+    const notes = document.getElementById('evNotes').value;
+
+    if(!name || !phone || !venue){
+        alert("Please complete the required fields.");
+        return;
+    }
+
+    const bookingText =
+`*NEW EVENT BOOKING REQUEST*
+--------------------------
+*Name:* ${name}
+*Phone:* ${phone}
+*Email:* ${email}
+
+*Event Type:* ${type}
+*Service Needed:* ${service}
+
+*Date:* ${date}
+*Time:* ${time}
+
+*Venue:* ${venue}
+
+*Expected Guests:* ${guests}
+
+*Additional Notes:*
+${notes}
+
+--------------------------
+Southern Style Smokehouse`;
+
+    const encoded = encodeURIComponent(bookingText);
+
+    window.open(
+        `https://wa.me/17194375041?text=${encoded}`,
+        '_blank'
+    );
+
+    closeEventModal();
+}
+</script>
+    <!-- EVENT BOOKING MODAL -->
+<div id="eventModal">
+
+    <div class="event-modal-content">
+
+        <h2>Event Catering Booking</h2>
+
+        <input type="text" id="evName" placeholder="Full Name" required>
+
+        <input type="tel" id="evPhone" placeholder="Phone Number" required>
+
+        <input type="email" id="evEmail" placeholder="Email Address">
+
+        <div class="event-grid">
+            <input type="date" id="evDate">
+
+            <input type="time" id="evTime">
+        </div>
+
+        <input type="text" id="evVenue" placeholder="Event Venue">
+
+        <select id="evType">
+            <option>Wedding</option>
+            <option>Birthday Party</option>
+            <option>Funeral Reception</option>
+            <option>Corporate Event</option>
+            <option>Graduation</option>
+            <option>Baby Shower</option>
+            <option>Church Event</option>
+            <option>Private Party</option>
+            <option>Other Ceremony</option>
+        </select>
+
+        <div class="event-grid">
+            <input type="number" id="evGuests" placeholder="Expected Guests">
+
+            <select id="evService">
+                <option>Food Catering</option>
+                <option>Food Truck Service</option>
+                <option>Full Event Catering</option>
+                <option>Custom Request</option>
+            </select>
+        </div>
+
+        <textarea id="evNotes" placeholder="Additional Information / Special Requests"></textarea>
+
+        <button class="event-submit" onclick="submitEventBooking()">
+            Submit Booking Request
+        </button>
+
+        <button class="event-cancel" onclick="closeEventModal()">
+            Cancel
+        </button>
+
+    </div>
+
+</div>
 </body>
 </html>
